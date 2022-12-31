@@ -37,7 +37,7 @@ public class UsersController {
             if (users.authenticate(email, password)) {
                 res.setStatus(true);
                 res.setMessage("successful authentication");
-                res.setObject(users.show(email).get(0));
+                res.setPayload(users.show(email).get(0));
                 return res;
             }
         }

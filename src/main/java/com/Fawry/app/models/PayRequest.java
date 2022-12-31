@@ -16,5 +16,5 @@ import java.util.Map;
 @NoArgsConstructor
 public class PayRequest {
     Map<String, String> handler = new HashMap<>();
-    Payment card= new Card();
+    Card card= new Card();
 }

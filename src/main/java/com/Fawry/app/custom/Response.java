@@ -4,7 +4,7 @@ public class Response<T> {
 
 	private boolean status;
 	private String message;
-	private T object;
+	private T payload;
 
 	public boolean isStatus() {
 		return status;
@@ -22,11 +22,11 @@ public class Response<T> {
 		this.message = message;
 	}
 
-	public T getObject() {
-		return object;
+	public T getPayload() {
+		return payload;
 	}
 
-	public void setObject(T object) {
-		this.object = object;
+	public void setPayload(T payload) {
+		this.payload = payload;
 	}
 }

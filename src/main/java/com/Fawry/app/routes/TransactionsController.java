@@ -33,9 +33,9 @@ public class TransactionsController {
     @GetMapping("/user/{email}/refund/{id}")
     public Response<Void> submitRefundReq(@PathVariable int id, @PathVariable String email) throws SQLException {
         Response<Void> res = new Response<>();
-        if (!transactionsData.showMyTransactions(email).contains(transactionsData.show(id).get(0))) {
+        if (!transactionsData.show(id).get(0).getUserEmail().equals(email)) {
             res.setStatus(false);
-            res.setMessage("User didn't issue specified transaction");
+            res.setMessage("User didn't issue such transaction");
             return res;
         }
         if (services.requestRefund(id, email, transactionsData)) {
@@ -48,5 +48,5 @@ public class TransactionsController {
         return res;
     }
 
-    
+
 }

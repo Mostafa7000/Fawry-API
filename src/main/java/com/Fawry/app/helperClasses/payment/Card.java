@@ -1,9 +1,16 @@
 package com.Fawry.app.helperClasses.payment;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Card implements Payment {
     private String cardNumber;
     private String holderName;
     private String cvv;
+
+    public Card(String cardNumber, String holderName, String cvv) {
+        initialize(cardNumber, holderName, cvv);
+    }
 
     public void initialize(String cardNumber, String holderName, String cvv) {
         this.cardNumber = cardNumber;

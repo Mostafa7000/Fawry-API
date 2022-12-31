@@ -10,6 +10,7 @@ import com.Fawry.app.models.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Services {
@@ -83,7 +84,7 @@ public class Services {
         // register a new transaction for wallet recharging
         transactions.create(new Transaction(0, 0, user.getEmail(), amount, ""));
         res.setStatus(true);
-        res.setMessage("Added funds to wallet successfully");
+        res.setMessage(String.format(Locale.US,"Added %.2f to wallet successfully", amount));
         return res;
     }
 }

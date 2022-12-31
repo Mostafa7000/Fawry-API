@@ -5,7 +5,6 @@ import com.Fawry.app.helperClasses.Services;
 import com.Fawry.app.models.Service;
 import com.Fawry.app.models.ServicesData;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +41,4 @@ public class ServicesController {
         }
         return res;
     }
-
-
 }

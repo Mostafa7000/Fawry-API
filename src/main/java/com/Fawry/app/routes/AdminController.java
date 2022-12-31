@@ -28,12 +28,17 @@ public class AdminController {
         servicesData = new ServicesData();
     }
 
-    @GetMapping("/discount/service/{id}/amount/{amount}")
+    @GetMapping("/discounts/service/{id}/amount/{amount}")
     public Response<Void> addServiceDiscount(@PathVariable int id, @PathVariable double amount) throws SQLException {
         var res = new Response<Void>();
         if (servicesData.show(id).size() == 0) {
             res.setStatus(false);
             res.setMessage("Service not found");
+            return res;
+        }
+        if (amount > 1.0 || amount < 0.0) {
+            res.setStatus(false);
+            res.setMessage("Invalid discount, discount must rely between 0.0 and 1.0");
             return res;
         }
         servicesData.setDiscount(id, amount);
@@ -42,12 +47,17 @@ public class AdminController {
         return res;
     }
 
-    @GetMapping("/discount/user/{email}/amount/{amount}")
+    @GetMapping("/discounts/user/{email}/amount/{amount}")
     public Response<Void> addUserDiscount(@PathVariable String email, @PathVariable double amount) throws SQLException {
         var res = new Response<Void>();
         if (usersData.show(email).size() == 0) {
             res.setStatus(false);
             res.setMessage("User not found");
+            return res;
+        }
+        if (amount > 1.0 || amount < 0.0) {
+            res.setStatus(false);
+            res.setMessage("Invalid discount, discount must rely between 0.0 and 1.0");
             return res;
         }
         usersData.setDiscount(email, amount);
@@ -56,7 +66,7 @@ public class AdminController {
         return res;
     }
 
-    @GetMapping("/transaction/payment")
+    @GetMapping("/transactions/payment")
     public List<Transaction> paymentTransactions() throws SQLException {
         var res = new ArrayList<Transaction>();
         for (var transaction : transactionsData.index()) {
@@ -66,7 +76,7 @@ public class AdminController {
         return res;
     }
 
-    @GetMapping("/transaction/wallet")
+    @GetMapping("/transactions/wallet")
     public List<Transaction> addToWalletTransactions() throws SQLException {
         var res = new ArrayList<Transaction>();
         for (var transaction : transactionsData.index()) {
@@ -76,7 +86,7 @@ public class AdminController {
         return res;
     }
 
-    @GetMapping("/transaction/refund/refunded")
+    @GetMapping("/transactions/refund/refunded")
     public List<Transaction> refundTransactions() throws SQLException {
         var res = new ArrayList<Transaction>();
         for (var transaction : transactionsData.index()) {
@@ -86,7 +96,7 @@ public class AdminController {
         return res;
     }
 
-    @GetMapping("/transaction/refund/pending")
+    @GetMapping("/transactions/refund/pending")
     public List<Transaction> pendingRefundTransactions() throws SQLException {
         var res = new ArrayList<Transaction>();
         for (var transaction : transactionsData.index()) {
@@ -96,7 +106,7 @@ public class AdminController {
         return res;
     }
 
-    @GetMapping("/transaction/{id}/refund/approve")
+    @GetMapping("/transactions/{id}/refund/approve")
     public Response<Void> approveRefund(@PathVariable int id) throws SQLException {
         var res = new Response<Void>();
         if (transactionsData.show(id).size() == 0) {
@@ -122,7 +132,7 @@ public class AdminController {
         return res;
     }
 
-    @GetMapping("/transaction/{id}/refund/reject")
+    @GetMapping("/transactions/{id}/refund/reject")
     public Response<Void> rejectRefund(@PathVariable int id) throws SQLException {
         var res = new Response<Void>();
         // check that the transaction exists
@@ -140,7 +150,7 @@ public class AdminController {
         // issue refund transaction
         transactionsData.approveOrReject(id, false);
         res.setStatus(true);
-        res.setMessage("refund rejected successfully successfully");
+        res.setMessage("refund rejected successfully");
         return res;
     }
 }

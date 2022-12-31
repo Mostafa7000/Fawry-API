@@ -71,10 +71,10 @@ public class PaymentController {
         }
         // Initializing Payment method
         Payment payMethodObj;
-        if(payMethod!=PaymentFactory.CARD)
+        if (payMethod != PaymentFactory.CARD)
             payMethodObj = PaymentFactory.createPayment(payMethod);
         else
-            payMethodObj= req.getCard();
+            payMethodObj = req.getCard();
 
         // Handle Payment
         ServicePay payHandler = new ServicePay(user, form, payMethodObj);

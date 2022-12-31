@@ -33,7 +33,7 @@ public class ServicesController {
     }
 
     @GetMapping("/discounts")
-    public List<Service> discounts(){
+    public List<Service> discounts() {
         List<Service> res = new ArrayList<>();
         for (var service : services.getAllServices()) {
             if (service.getDiscount() > 0) {
@@ -42,7 +42,6 @@ public class ServicesController {
         }
         return res;
     }
-
 
 
 }

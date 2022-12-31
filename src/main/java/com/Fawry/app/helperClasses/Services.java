@@ -1,10 +1,11 @@
 package com.Fawry.app.helperClasses;
 
+import com.Fawry.app.custom.Response;
 import com.Fawry.app.helperClasses.formAndHandler.*;
-import com.Fawry.app.models.Service;
-import com.Fawry.app.models.ServicesData;
-import com.Fawry.app.models.Transaction;
-import com.Fawry.app.models.TransactionsData;
+import com.Fawry.app.helperClasses.payment.Card;
+import com.Fawry.app.helperClasses.payment.Payment;
+import com.Fawry.app.helperClasses.payment.PaymentFactory;
+import com.Fawry.app.models.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -68,5 +69,21 @@ public class Services {
                 return transactions.requestRefund(id);
             }
         return false;
+    }
+
+    public Response<Void> addToWallet(UsersData users, User user, Card card, double amount) throws Exception {
+        var transactions= new TransactionsData();
+        Response<Void> res = new Response<>();
+        if (!((Payment) card).pay(amount)) {
+            res.setStatus(false);
+            res.setMessage("Couldn't pay to update balance");
+            return res;
+        }
+        users.updateBalance(user.getEmail(), user.getBalance() + amount);
+        // register a new transaction for wallet recharging
+        transactions.create(new Transaction(0, 0, user.getEmail(), amount, ""));
+        res.setStatus(true);
+        res.setMessage("Added funds to wallet successfully");
+        return res;
     }
 }

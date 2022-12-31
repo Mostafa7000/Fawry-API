@@ -113,7 +113,7 @@ public class TransactionsData {
             if (approve)
                 st.setString(1, "refunded");
             else
-                st.setString(1, "refused");
+                st.setString(1, "rejected");
 
             return st.executeUpdate() == 1;
         }

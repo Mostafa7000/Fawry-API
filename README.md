@@ -15,6 +15,7 @@
 ## How to run the server
 1. In Eclipse, import the project as a maven project, And run the FawryApplication class.
 2. you may incounter errors in Eclipse, just ignore them and proceed.
+3. The project runs on **Port 8080**
 
 ## Postman collection
 [Postman](https://www.postman.com/navigation-pilot-52858262/workspace/fcai/collection/24397850-e59eff63-1796-4906-b296-25248593e470?action=share&creator=24397850)

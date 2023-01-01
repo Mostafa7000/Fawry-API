@@ -11,7 +11,7 @@
 - Spring web
 - Lombok
 - SQLite JDBC
-
+ 
 ## How to run the server
 1. In Eclipse, import the project as a maven project, And run the FawryApplication class.
 2. you may incounter errors in Eclipse, just ignore them and proceed.

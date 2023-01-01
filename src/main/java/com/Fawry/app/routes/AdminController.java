@@ -75,7 +75,7 @@ public class AdminController {
         }
         return res;
     }
-
+    //transaction wallet
     @GetMapping("/transactions/wallet")
     public List<Transaction> addToWalletTransactions() throws SQLException {
         var res = new ArrayList<Transaction>();
@@ -85,7 +85,7 @@ public class AdminController {
         }
         return res;
     }
-
+    //transaction refund
     @GetMapping("/transactions/refund/refunded")
     public List<Transaction> refundTransactions() throws SQLException {
         var res = new ArrayList<Transaction>();
@@ -105,7 +105,7 @@ public class AdminController {
         }
         return res;
     }
-
+    //approvement for the refund
     @GetMapping("/transactions/{id}/refund/approve")
     public Response<Void> approveRefund(@PathVariable int id) throws SQLException {
         var res = new Response<Void>();
@@ -131,7 +131,7 @@ public class AdminController {
         res.setMessage("Transaction refunded successfully");
         return res;
     }
-
+     //rejection for the refund
     @GetMapping("/transactions/{id}/refund/reject")
     public Response<Void> rejectRefund(@PathVariable int id) throws SQLException {
         var res = new Response<Void>();

@@ -26,7 +26,7 @@ public class PaymentController {
         usersData = new UsersData();
         services = new Services();
     }
-
+ //payment with card
     @PostMapping("/card")
     public Response<Void> payWithCard(@RequestBody PayRequest req, @PathVariable int id, @PathVariable String email) throws Exception {
         Response<Void> res = new Response<>();
@@ -51,7 +51,7 @@ public class PaymentController {
         Payment payMethodObj = req.getCard();
         return handlePayment(user, form, payMethodObj);
     }
-
+ //payment with wallet
     @PostMapping("/wallet")
     public Response<Void> payWithWallet(@RequestBody PayRequest req, @PathVariable int id, @PathVariable String email) throws Exception {
         Response<Void> res = new Response<>();
@@ -71,7 +71,7 @@ public class PaymentController {
         ((Wallet) payMethodObj).initialize(user);
         return handlePayment(user, form, payMethodObj);
     }
-
+//payment with cash
     @PostMapping("/cash")
     public Response<Void> payWithCash(@RequestBody PayRequest req, @PathVariable int id, @PathVariable String email) throws Exception {
         Response<Void> res = new Response<>();

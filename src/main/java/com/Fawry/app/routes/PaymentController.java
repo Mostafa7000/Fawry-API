@@ -26,7 +26,7 @@ public class PaymentController {
         usersData = new UsersData();
         services = new Services();
     }
-
+ //payment with card
     @PostMapping("/card")
     public Response<Void> payWithCard(@RequestBody PayRequest req, @PathVariable int id, @PathVariable String email) throws Exception {
         Response<Void> res = new Response<>();
@@ -51,7 +51,7 @@ public class PaymentController {
         Payment payMethodObj = req.getCard();
         return handlePayment(user, form, payMethodObj);
     }
-
+ //payment with wallet
     @PostMapping("/wallet")
     public Response<Void> payWithWallet(@RequestBody PayRequest req, @PathVariable int id, @PathVariable String email) throws Exception {
         Response<Void> res = new Response<>();
@@ -71,7 +71,7 @@ public class PaymentController {
         ((Wallet) payMethodObj).initialize(user);
         return handlePayment(user, form, payMethodObj);
     }
-
+//payment with cash
     @PostMapping("/cash")
     public Response<Void> payWithCash(@RequestBody PayRequest req, @PathVariable int id, @PathVariable String email) throws Exception {
         Response<Void> res = new Response<>();
@@ -100,7 +100,7 @@ public class PaymentController {
     private boolean validateCard(Card card) {
         return Pattern.matches("^(\\d{4}[\\s-]?){3}\\d{4}$", card.getCardNumber()) && Pattern.matches("[a-zA-Z\\s]+", card.getHolderName()) && Pattern.matches("\\d{3}", card.getCvv());
     }
-
+//handel payment
     private Response<Void> handlePayment(User user, Form form, Payment payMethodObj) throws Exception {
         var res = new Response<Void>();
         ServicePay payHandler = new ServicePay(user, form, payMethodObj);

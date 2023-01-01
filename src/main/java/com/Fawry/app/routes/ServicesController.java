@@ -30,7 +30,7 @@ public class ServicesController {
     public List<Service> search(@RequestParam(value = "q") String query) {
         return services.searchServices(query);
     }
-
+//discounts
     @GetMapping("/discounts")
     public List<Service> discounts() {
         List<Service> res = new ArrayList<>();

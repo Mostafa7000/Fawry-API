@@ -1,12 +1,14 @@
 package com.Fawry.app.models;
 
+import org.springframework.stereotype.Repository;
+
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class UsersData {
 
     private final Connection conn;

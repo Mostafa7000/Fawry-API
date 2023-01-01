@@ -27,7 +27,7 @@ public class AdminController {
         transactionsData = new TransactionsData();
         servicesData = new ServicesData();
     }
-
+    //function for adding discount on service
     @GetMapping("/discounts/service/{id}/amount/{amount}")
     public Response<Void> addServiceDiscount(@PathVariable int id, @PathVariable double amount) throws SQLException {
         var res = new Response<Void>();
@@ -46,7 +46,7 @@ public class AdminController {
         res.setMessage("Added discount to service successfully");
         return res;
     }
-
+    //function for adding discount for user
     @GetMapping("/discounts/user/{email}/amount/{amount}")
     public Response<Void> addUserDiscount(@PathVariable String email, @PathVariable double amount) throws SQLException {
         var res = new Response<Void>();
